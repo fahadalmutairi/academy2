@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+
+
+<!-- <div class="row"> -->
+<div class="box">
+<div class="col-md-12">
+<input id="search_box" type="text" />
+<p id="results">Results</p>
+<!-- </div> -->
+</div>
+</div>
+<script type="text/javascript">
+	$('#search_box').on('keyup', function() {
+		$.ajax({
+			type: 'GET',
+			url: '/json_response/',
+			data: {
+				search:$('#search_box').val(),
+			},
+			error:function() {
+				$('#results').html('<p>ERROR</p>');
+			},
+			success:function(data, pks) {
+				$('#results').text('');
+				// console.log(data);
+
+				for(i=0; i < data.length; i++) {
+					$('#results').append('<a href="/subject_detail/'+data[i][1]+'">' +data[i][0]+ '</a><br>');
+				}
+			},
+
+		})
+	});
+
+</script>
+
+{% endblock %}

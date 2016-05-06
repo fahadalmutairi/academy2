@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div class="align-left"></div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" width="560" height="315"
+                        src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-10 col-xs-12">
+                <div class="row text-right">
+                    {% if next_video %}
+                        <button type="button" class="btn btn-default"><a href="/video_view/{{ next_video.pk }}/">Next
+                            Video</a></button>
+                    {% endif %}
+
+                    {% if previous_video %}
+                        <button type="button" class="btn btn-default"><a href="/video_view/{{ previous_video.pk }}/">Previous
+                            Video</a></button>
+                    {% endif %}
+                </div>
+                <div class="row form-group">
+                    <form role='form' action='/add_comment/{{ video.pk }}/' method='POST'>
+                        {% csrf_token %}
+                        {{ comment_form|crispy }}
+                        <input class="btn btn-default pull-right" type='submit' value='Post Comment'>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <h4>Comments <span class="badge">{{ video.comment_set.count }}</span></h4>
+                    {% for comment in video.comment_set.all %}
+                        <div class="well well-sm">
+                            <ul>
+                                <li>
+                                    {{ comment.comment_text }} <br>
+                                    <small> {{ comment.author.first_name }} - {{ comment.date_posted }}</small>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

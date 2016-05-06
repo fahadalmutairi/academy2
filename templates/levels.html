@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container-fluid">
+<div class="row">
+
+
+		{% for level in levels %}
+		<a href="/subject_detail/{{level.pk}}/">
+		{{ level.level_name }}
+		</a>
+		{% endfor %}
+
+	</div>
+</div>
+
+{% endblock %}

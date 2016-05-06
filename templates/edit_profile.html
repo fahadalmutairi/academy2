@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+{% trans 'Edit Profile' %}
+{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block body %}
+
+<form action='/edit_profile/' method='POST'>
+{% csrf_token %}
+{{ form|crispy }}
+<input type='submit' value='Save'>
+</form>
+
+{% endblock %}

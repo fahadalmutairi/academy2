@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans "Subjects" %} {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+  <div class="row">
+
+    {% for subject in subjects %}
+    <div class="col-md-4">
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          {{subject.subject_name}}
+          {% if subject not in request.user.fav_subject.all %}
+          <button type="button" class="btn btn-default"><a href="/follow_subject/{{subject.pk}}">Follow</button>
+          {%else%}
+          <button type="button" class="btn btn-default"><a href="/unfollow_subject/{{subject.pk}}">Unfollow</button>
+          {%endif%}
+        </div>
+
+        <div class="panel-body">
+        </div>
+        {% for video in subject.video_set.all %}
+        <!-- List group -->
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="/video_view/{{video.pk}}">{{ video.video_name}}</a>
+            {% if video not in request.user.fav_video.all %}
+            <button type="button" class="btn btn-default"><a href="/fav_video/{{video.pk}}">Favorite</a></button>
+            {%else%}
+            <button type="button" class="btn btn-default"><a href="/unfav_video/{{video.pk}}">Unfavorite</a></button>
+            {%endif%}
+          </li>
+        </ul>
+        {%endfor%}
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
+
+#<ul class="list-group">
+#<li class="list-group-item">
+#<span class="badge">{{subject.video_set.count}}</span>
+#<a href=">{{subject.title}}</a>
+#</li>
+#</ul>
