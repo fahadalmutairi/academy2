@@ -37,3 +37,6 @@ class Video(models.Model):
 
     def __unicode__(self):
         return '%s - %s - %s' % (self.subject.title, self.video_order, self.title)
+
+    def get_absolute_url(self):
+        return "video/%s/" %(self.pk)

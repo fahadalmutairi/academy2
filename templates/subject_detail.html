@@ -10,11 +10,11 @@
  	{% for video in subject.video_set.all %}
 		<div class="col-md-8 col-sm-12 portfolio-item">
 	            <img src="http://img.youtube.com/vi/{{video.video_id}}/0.jpg" class="img-responsive">
-	    	</a>
-	            <div class="portfolio-caption">
-	               <a class="/video_detail/{{video.pk}}"> <h4>{{video.video_name}}</h4>
+	            <div class="portfolio-caption">'
+                    <a href="{' %}"
+                    <h4>{{video.title}}</h4>
 	                <p class="text-muted">{{video.subject}}</p>
-	            </div>   
+	            </div>
 	    </div>
 	    {%endfor%}
 	</div>	

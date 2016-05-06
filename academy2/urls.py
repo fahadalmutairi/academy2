@@ -17,11 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-import courses
-from courses.views import SubjectList, SubjectDetail
+
+from courses import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'subjects/$', SubjectList.as_view(), name='subject_list'),
-    url(r'subjects/(?P<pk>.+)/$', SubjectDetail.as_view(), name='subject_detail')
+    url(r'subjects/$', views.SubjectList.as_view(), name='subject_list'),
+    url(r'subjects/(?P<pk>.+)/$', views.SubjectDetail.as_view(), name='subject_detail'),
+    url(r'video/(?P<pk>[0-9]+)$', 'courses.views.video_view', name='video_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
