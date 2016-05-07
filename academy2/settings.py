@@ -37,12 +37,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social.apps.django_app.default',
     'crispy_forms',
 
     'profiles',
     'accounts',
     'courses',
+
+
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_TWITTER_KEY = '4ccOuDqUgV8FUQwjUieL0g8c2'
+SOCIAL_AUTH_TWITTER_SECRET = 'f4egpUEZ8lKyyIuVpzk2zuxP9BEAKEbLduK6wRYbdBqabdYjXK'
+SOCIAL_AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },

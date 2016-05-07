@@ -6,6 +6,7 @@ from django.db import models
 from django.conf import settings
 from courses.models import Level, Subject, Video
 
+
 class Comment(models.Model):
     comment_text = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-
+from profiles.forms import CreateCommentForm
 from courses.models import Subject, Video
 
 
@@ -24,8 +24,8 @@ class VideoList(ListView):
 
 def video_view(request, pk):
     context = {}
-    # form = CreateCommentForm()
-    # context['comment_form'] = form
+    form = CreateCommentForm()
+    context['comment_form'] = form
     video = Video.objects.get(pk=pk)
     context['video'] = video
     try:

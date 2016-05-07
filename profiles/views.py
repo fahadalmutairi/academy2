@@ -11,6 +11,8 @@ from . import models
 from accounts.models import CustomUser
 
 
+# add feedback messages
+
 def add_comment(request, pk):
     context = {}
     video = Video.objects.get(pk=pk)
