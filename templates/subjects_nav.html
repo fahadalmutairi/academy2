@@ -1,0 +1,18 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                Subjects
+            </a>
+        </li>
+        {% for subject in subjects %}
+            <li>
+                <a href="{% url 'subject_detail' pk=subject.pk %}">{{ subject.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->
+
+
