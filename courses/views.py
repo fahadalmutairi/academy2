@@ -35,7 +35,7 @@ def video_view(request, pk):
     video = Video.objects.get(pk=pk)
     context['video'] = video
     try:
-        context['previous_video'] = Video.objects.get(subject__title='%s' % video.subject_name.subject_name,
+        context['previous_video'] = Video.objects.get(subject__title='%s' % video.subject.title,
                                                       pk=video.pk - 1)
 
         Video.objects.get(pk=context['previous_video'].pk)
@@ -45,7 +45,7 @@ def video_view(request, pk):
 
     try:
 
-        context['next_video'] = Video.objects.get(subject__title='%s' % video.subject_name.subject_name,
+        context['next_video'] = Video.objects.get(subject__title='%s' % video.subject.title,
                                                   pk=video.pk + 1)
 
         Video.objects.get(pk=context['next_video'].pk)

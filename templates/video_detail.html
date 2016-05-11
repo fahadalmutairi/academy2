@@ -13,12 +13,12 @@
             <div class="col-md-8 col-lg-8 col-sm-10 col-xs-12">
                 <div class="row text-right">
                     {% if next_video %}
-                        <button type="button" class="btn btn-default"><a href="/video_view/{{ next_video.pk }}/">Next
+                        <button type="button" class="btn btn-default"><a href="{% url 'video_detail' pk=next_video.pk %}">Next
                             Video</a></button>
                     {% endif %}
 
                     {% if previous_video %}
-                        <button type="button" class="btn btn-default"><a href="/video_view/{{ previous_video.pk }}/">Previous
+                        <button type="button" class="btn btn-default"><a href="{% url 'video_detail' pk=previous_video.pk %}">Previous
                             Video</a></button>
                     {% endif %}
                 </div>
