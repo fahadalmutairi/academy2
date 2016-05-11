@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from accounts import views
+from courses import views as course_views
 
 from courses import views
 
@@ -28,6 +29,8 @@ urlpatterns = [
     url(r'^signin/$', 'accounts.views.login_view'),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
 
+
+    url(r'^$', views.HomeView.as_view()),
     url(r'^profile_page/$', 'profiles.views.profile_page'),
     url(r'^edit_profile/$', 'profiles.views.edit_profile'),
 
@@ -45,7 +48,7 @@ urlpatterns = [
 
     url(r'subjects/$', views.SubjectList.as_view(), name='subject_list'),
     url(r'subjects/(?P<pk>.+)/$', views.SubjectDetail.as_view(), name='subject_detail'),
-    url(r'video/(?P<pk>[0-9]+)$', 'courses.views.video_view', name='video_detail'),
+    url(r'video/(?P<pk>[0-9]+)$', course_views.video_view, name='video_detail'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

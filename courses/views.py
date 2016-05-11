@@ -1,7 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from profiles.forms import CreateCommentForm
 from courses.models import Subject, Video
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
+
 
 
 class SubjectList(ListView):

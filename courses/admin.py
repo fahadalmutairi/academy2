@@ -13,6 +13,14 @@ class VideoAdmin(admin.ModelAdmin):
         model = Video
 
 
+class VideoInline(admin.TabularInline):
+    model = Video
+
+
+class SubjectAdmin(admin.ModelAdmin):
+    inlines = [VideoInline,]
+
+
 admin.site.register(Level)
-admin.site.register(Subject)
+admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Video, VideoAdmin)

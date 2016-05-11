@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block container %}
+
+
+	{% if request.user.is_authenticated %}
+		<div class="row">
+			<div class="col-md-12">Welcome {{ request.user}}</div><br>
+			<a href="/logout/">Logout</a>
+		</div>
+	{% endif %}
+	{% if not request.user.is_authenticated %}
+	<div class="row">
+		<div class="col-md-12">
+			<form action='/signup/' method='POST'>
+				{% csrf_token %}
+				{{form|crispy}}
+				<input type='submit' value='Sign Up'>
+			</form>
+		</div>
+	</div>
+        <h4>Social Auth</h4>
+        <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login With Twitter</a>
+	{% endif %}
+
+
+{% endblock %}	

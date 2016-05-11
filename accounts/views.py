@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 
 
-
 def sign_up(request):
     context = {}
     context['form'] = CustomUserCreationForm()
