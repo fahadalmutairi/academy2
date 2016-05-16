@@ -22,14 +22,17 @@
                             Video</a></button>
                     {% endif %}
                 </div>
-                <div class="row form-group">
+                <div class="form-group">
                     <form role='form' action='/add_comment/{{ video.pk }}/' method='POST'>
+                        <label for="comment">Add your comment</label>
                         {% csrf_token %}
+
                         {{ comment_form|crispy }}
-                        <input class="btn btn-default pull-right" type='submit' value='Post Comment'>
+
+                        <input type="text" class="btn btn-default pull-right" type='submit' value='Post Comment'>
                     </form>
                 </div>
-                <div class="form-group">
+                <div class="row">
                     <h4>Comments <span class="badge">{{ video.comment_set.count }}</span></h4>
                     {% for comment in video.comment_set.all %}
                         <div class="well well-sm">
