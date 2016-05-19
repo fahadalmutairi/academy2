@@ -5,26 +5,26 @@
 	<div class="row">
 
 
-	<div class="col-md-8 col-sm-8 col-lg-6 portfolio-item">
+	<div class="col-xs-9 col-md-9 col-sm-9 col-lg-9 portfolio-item">
         	<h4>Recent Videos</h4>
 		{% for video in recent_videos %}
             <a href="/video_view/{{ video.pk }}/"><img src="http://img.youtube.com/vi/{{video.video_id}}/0.jpg" class="img-thumbnail" ></a>
 
             <div class="portfolio-caption">
-                <a href="/video_view/{{ video.pk }}/"><h4>{{video.video_name}}</h4></a>
-                <a href="/subject_detail/{{video.subject_name.pk}}"><p class="text-muted">{{video.subject_name}}</p></a>
+                <a href="{% url 'video_detail' pk=video.pk %}"><h4>{{video.title}}</h4></a>
+                <a href="{% url 'subject_detail' pk=video.subject.pk %}"><p class="text-muted">{{video.subject.title}}</p></a>
                 <hr class="featurette-divider">
             </div>
             {%endfor%}
     </div>
-    <div class="col-md-4 col-sm-4 col-lg-6">
+    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
 		<h3>Our Subjects</h3>
 		{% for subject in updated_subjects %}
 <hr class="featurette-divider">
     	<div class="list-group">
-		  <a href="/subject_detail/{{subject.pk}}" class="list-group-item active">
-		    <h4 class="list-group-item-heading">{{subject.subject_name}}</h4>
-		    <p class="list-group-item-text">{{ subject.subject_description}}</p>
+		  <a href="{% url 'subject_detail' pk=subject.pk %}" class="list-group-item active">
+		    <h4 class="list-group-item-heading">{{subject.title}}</h4>
+		    <p class="list-group-item-text">{{ subject.description}}</p>
 		  </a>
 		</div>
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views.generic import ListView, DetailView, TemplateView
 from profiles.forms import CreateCommentForm
 from courses.models import Subject, Video
@@ -6,6 +6,13 @@ from courses.models import Subject, Video
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+    def get_context_data(self, **kwargs):
+        context = {}
+        recent_videos = Video.objects.all()
+        updated_subjects = Subject.objects.all()
+        context['recent_videos'] = list(recent_videos)[-3:]
+        context['updated_subjects'] = list(updated_subjects)[-3:]
+        return context
 
 
 
