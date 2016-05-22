@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'', include('social.apps.django_app.urls', namespace='social')),
 
 
-    url(r'^$', views.HomeView.as_view()),
+    url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^profile_page/$', 'profiles.views.profile_page'),
     url(r'^edit_profile/$', 'profiles.views.edit_profile'),
 
@@ -46,9 +46,14 @@ urlpatterns = [
     url(r'^unfollow_level/(?P<pk>.+)/$', 'profiles.views.unfollow_level'),
 
 
-    url(r'subjects/$', views.SubjectList.as_view(), name='subject_list'),
-    url(r'subjects/(?P<pk>.+)/$', views.SubjectDetail.as_view(), name='subject_detail'),
-    url(r'video/(?P<pk>[0-9]+)$', course_views.video_view, name='video_detail'),
+    url(r'^subjects/$', views.SubjectList.as_view(), name='subject_list'),
+    url(r'^subjects/(?P<pk>.+)/$', views.SubjectDetail.as_view(), name='subject_detail'),
+    url(r'^video/$', views.VideoList.as_view(), name='video_list'),
+    url(r'^video/(?P<pk>[0-9]+)$', course_views.video_view, name='video_detail'),
 
+    # url(r'^q_search/', v)?
+    url(r'^search/', include('haystack.urls')),
+
+    url(r'^privacy_policy/$', views.PrivacyPolicy.as_view()),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

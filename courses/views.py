@@ -2,6 +2,11 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import ListView, DetailView, TemplateView
 from profiles.forms import CreateCommentForm
 from courses.models import Subject, Video
+from django.db.models import Q
+
+
+class PrivacyPolicy(TemplateView):
+    template_name = 'privacy_policy.html'
 
 
 class HomeView(TemplateView):
@@ -34,6 +39,20 @@ class VideoList(ListView):
     template_name = 'videos.html'
     context_object_name = 'videos'
 
+    def get_queryset(self):
+        print self.request
+        try:
+            title = self.kwargs['title']
+            print title
+        except:
+            name = ''
+            print 'no name'
+        if (title != ''):
+            object_list = self.model.objects.filter(title__icontains = title)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
+
 
 def video_view(request, pk):
     context = {}
@@ -61,3 +80,6 @@ def video_view(request, pk):
         print e
 
     return render(request, 'video_detail.html', context)
+
+
+
