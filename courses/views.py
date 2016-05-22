@@ -38,20 +38,20 @@ class VideoList(ListView):
     model = Video
     template_name = 'videos.html'
     context_object_name = 'videos'
-
-    def get_queryset(self):
-        print self.request
-        try:
-            title = self.kwargs['title']
-            print title
-        except:
-            name = ''
-            print 'no name'
-        if (title != ''):
-            object_list = self.model.objects.filter(title__icontains = title)
-        else:
-            object_list = self.model.objects.all()
-        return object_list
+    #
+    # def get_queryset(self):
+    #     print self.request
+    #     try:
+    #         title = self.kwargs['title']
+    #         print title
+    #     except:
+    #         name = ''
+    #         print 'no name'
+    #     if (title != ''):
+    #         object_list = self.model.objects.filter(title__icontains = title)
+    #     else:
+    #         object_list = self.model.objects.all()
+    #     return object_list
 
 
 def video_view(request, pk):
