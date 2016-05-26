@@ -99,16 +99,27 @@ WSGI_APPLICATION = 'academy2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# SQLLite
 DATABASES = {
-    'default':{
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'academy2',
-        'HOST': '127.0.0.1',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'PORT': ''
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# MySQL?
+
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'academy2',
+#         'HOST': '127.0.0.1',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'PORT': ''
+#     }
+# }
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 # Password validation

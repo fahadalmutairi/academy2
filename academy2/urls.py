@@ -17,18 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from accounts import views
 from courses import views as course_views
-
 from courses import views
+import accounts.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^signup/$', 'accounts.views.sign_up'),
-    url(r'^logout/$', 'accounts.views.logout_view'),
-    url(r'^signin/$', 'accounts.views.login_view'),
+
     url(r'', include('social.apps.django_app.urls', namespace='social')),
 
+    url(r'', include('accounts.urls', namespace='accounts')),
 
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^profile_page/$', 'profiles.views.profile_page'),
@@ -52,7 +50,7 @@ urlpatterns = [
     url(r'^video/(?P<pk>[0-9]+)$', course_views.video_view, name='video_detail'),
 
     # url(r'^q_search/', v)?
-    url(r'^search/', include('haystack.urls')),
+    # url(r'^search/', include('haystack.urls')),
 
     url(r'^privacy_policy/$', views.PrivacyPolicy.as_view()),
 
